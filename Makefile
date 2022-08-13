@@ -7,7 +7,7 @@ BINDIR=$(PREFIX)/bin
 all: zpaqfranz
 
 zpaqfranz:
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) zpaqfranz.cpp -o $@ -pthread
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) zpaqfranz.cpp -o $@ -pthread `pkg-config --libs --cflags icu-uc icu-io`
 
 install: zpaqfranz
 	install -m 0755 -d $(DESTDIR)$(BINDIR)
