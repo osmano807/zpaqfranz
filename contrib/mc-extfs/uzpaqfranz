@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+# Define awk
+AWK=$(which awk)
+
+ZPAQ=$(which zpaqfranz)
+
+# The 'list' command executive
+# AAAAAAA NNN OOOOOOOO GGGGGGGG SSSSSSSS DATETIME [PATH/]FILENAME [-> [PATH/]FILENAME[/]]]
+mc_uzpaq_fs_list()
+{
+    # List the contents of the archive and sort it out
+    $ZPAQ l "$1" -filelist -all 2>/dev/null | $AWK -v uid=`id -nu` -v gid=`id -ng` '
+        function remove_dots(orig) {
+	    gsub("\\.", "", orig)
+	    return orig
+        }
+        function parse_permissions(orig) {
+	    isdir="-"
+	    perm=orig
+	    if (index(orig, "d") == 1) {
+		    isdir="d"
+		    perm=substr(orig, 2)
+	    }
+	    "unix-permissions convert.stat " perm | getline out
+	    return isdir out
+        }
+	function parse_datetime(date, time) {
+	    split(date, a, "-")
+	    return a[2] "-" a[3] "-" a[1] " " time
+        }
+	/^-/{
+	    date=$2
+	    time=$3
+	    size=remove_dots($4)
+	    if(index($5, "|") != 0) next
+	    permission=parse_permissions($5)
+	    if(index(permission, "d") != 0) next
+	    split($6, tmp, "|")
+	    version = tmp[1]
+	    filepath = tmp[2]
+
+	    if(index(filepath, "/") == 1) filepath=substr(filepath,2)
+	    
+	    datetime = parse_datetime(date,time)
+
+	    printf "%s %d %s %s %s %s ./%s/%s", permission, 1, uid, gid, size, datetime, version, filepath
+	    for(i=7;i<=NF;i++) printf " " $i
+            printf "\n"
+
+	}'
+}
+
+
+# The 'copyout' command executive to copy displayed files to a destination
+mc_uzpaq_fs_copyout ()
+{
+    TMPDIR=`mktemp -d "${MC_TMPDIR:-/tmp}/mctmpdir-uzpaq.XXXXXX"` || exit 1
+    version=`echo "$2" | cut -d\/ -f 1`
+    origfile=`echo "$2" | cut -d\/ -f 2-`
+
+    multifile=${1/_0000/_$version}
+
+    $ZPAQ x "${multifile}" -only "/${origfile}" -to "${TMPDIR}/" -space >/dev/null 2>&1
+
+
+    cat "${TMPDIR}/${origfile}" > "$3"
+    #echo cat "${TMPDIR}/${origfile}" > "$3"
+    #cd /
+    rm -rf "$TMPDIR"
+}
+
+# The main routine
+umask 077
+
+cmd="$1"
+shift
+
+case "$cmd" in
+   list)    mc_uzpaq_fs_list    "$@" ;;
+   copyout) mc_uzpaq_fs_copyout "$@" ;;
+   *)       exit 1 ;;
+esac
+
+exit 0
