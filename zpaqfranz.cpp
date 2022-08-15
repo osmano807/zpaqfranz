@@ -13,7 +13,7 @@
  https://sourceforge.net/projects/zpaqfranz/
 */
 
-#define ZPAQ_VERSION "55.10d-experimental"
+#define ZPAQ_VERSION "55.10e-experimental"
 
 #if defined(_WIN64)
 #define ZSFX_VERSION "SFX64 v55.1,"
@@ -295,7 +295,6 @@ check: zpaqfranz
 	#include <sys/mount.h>
 	#include <sys/param.h>
 	#include <sys/stat.h>
-	#include <sys/sysctl.h> ///fika
 	#include <sys/time.h>
 	#include <sys/times.h>
 	#include <sys/types.h>
@@ -304,6 +303,10 @@ check: zpaqfranz
 	#include <unistd.h>
 	#include <utime.h>
 	#include <vector>
+	#ifdef BSD
+		#include <sys/sysctl.h>
+		#include <sys/mount.h>
+	#endif
 #else  // Assume Windows
 	#include <assert.h>
 	#include <time.h>
@@ -23591,6 +23594,7 @@ void help_b(bool i_usage,bool i_example)
 		moreprint("<>:               franzomips (fake index) showed if no switch selected");
 		moreprint("<>:               By default test ALL for 5 seconds with 400.000 bytes");
 		moreprint("<>:               NOTE: THIS IS THE MAXIMUM PERFORMANCES, not the real one!");
+		moreprint("<>: -debug        Do internal check (for non-Intel CPU)");
 		moreprint("<>: -verbose      Verbose output");
 		moreprint("<>: -n X          Set time limit to X s (<1000)");
 		moreprint("<>: -minsize Y    Run on chunks of Y bytes (<2000000000)");
@@ -23608,6 +23612,7 @@ void help_b(bool i_usage,bool i_example)
 		moreprint("Benchmark for 10 second each:        b -n 10 -sha256 -blake3 -minsize 1048576");
 		moreprint("Cook the CPU (all cores):            b -all -n 20 -blake3");
 		moreprint("Cook the CPU (8 cores):              b -all -t8 -n 20 -blake3");
+		moreprint("Test CPU:                            b -debug -verbose");
 	}
 }
 void help_setpassword(bool i_usage,bool i_example)
