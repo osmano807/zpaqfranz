@@ -13,7 +13,7 @@
  https://sourceforge.net/projects/zpaqfranz/
 */
 
-#define ZPAQ_VERSION "55.10c-experimental"
+#define ZPAQ_VERSION "55.10d-experimental"
 
 #if defined(_WIN64)
 #define ZSFX_VERSION "SFX64 v55.1,"
@@ -295,7 +295,7 @@ check: zpaqfranz
 	#include <sys/mount.h>
 	#include <sys/param.h>
 	#include <sys/stat.h>
-	#include <sys/sysctl.h>
+	#include <sys/sysctl.h> ///fika
 	#include <sys/time.h>
 	#include <sys/times.h>
 	#include <sys/types.h>
@@ -32364,7 +32364,7 @@ bool isbigendian(void)
     return bint.c[0] == 1;
 }
 static unsigned long x=123456789, y=362436069, z=521288629;
-unsigned long xorshf96(void) 
+unsigned char xorshf96(void) 
 {          
 	unsigned long t;
     x^=x << 16;
@@ -32374,7 +32374,7 @@ unsigned long xorshf96(void)
 	x=y;
 	y=z;
 	z=t^x^y;
-	return z;
+	return z & 0xFF;
 }
 int Jidac::benchmark()
 {
@@ -32388,30 +32388,39 @@ int Jidac::benchmark()
 			myprintf("32374: GURU cannot alloc the buffer8bit\n");
 			return 2;
 		}
+		uint32_t *buffer32bit = (uint32_t*)malloc(chunksize*sizeof(uint32_t));
+		if (buffer32bit==0)
+		{
+			myprintf("32394: GURU cannot alloc the buffer32bit\n");
+			return 2;
+		}
+		
 		int64_t startcalc=mtime();
 		MAPPAAUTOCHECK myautocheck_map;
 		hash_autocheck myblock;
-		myblock.ok="35B0E69A";
-		myautocheck_map.insert(std::pair<string, hash_autocheck>("CRC-32",myblock));
-		myblock.ok="5E1D5D95";
-		myautocheck_map.insert(std::pair<string, hash_autocheck>("CRC-32C",myblock));
-		myblock.ok="5348C1C5B04F8B2F";
-		myautocheck_map.insert(std::pair<string, hash_autocheck>("XXHASH64",myblock));
-		myblock.ok="572FC7B2AEFF2FC25993F1887A49CA1F";
-		myautocheck_map.insert(std::pair<string, hash_autocheck>("MD5",myblock));
-		myblock.ok="4EE01697017D9EE553C15A550B695B1E";
-		myautocheck_map.insert(std::pair<string, hash_autocheck>("XXH3",myblock));
-		myblock.ok="97D59D97E2AB150E20952D2A6EA51E0EDD4A98E1";
-		myautocheck_map.insert(std::pair<string, hash_autocheck>("SHA1-WRITE",myblock));
-		myautocheck_map.insert(std::pair<string, hash_autocheck>("SHA1-PUT",myblock));
-		myblock.ok="C350D1BF081C03FDDB6B4F5CE56E50F29F2775078DE3C43FB18F72BDE46EF870";
-		myautocheck_map.insert(std::pair<string, hash_autocheck>("SHA-256",myblock));
-		myblock.ok="B2212850EE264D622D4579662B91A6C32FEAFB8174702529B13E225296AC3977";
-		myautocheck_map.insert(std::pair<string, hash_autocheck>("SHA-3",myblock));
-		myblock.ok="48EB57CD473E605D657EFB775C94F1CC3CB11D311E269D1B2B8E6A2DA736FFBB";
+		myblock.ok="E60322DAA4E74BAA98921F8DD5C1D3D29C664B9984529D31CB7A69130C0AC98A";
 		myautocheck_map.insert(std::pair<string, hash_autocheck>("BLAKE3",myblock));
-		myblock.ok="712D2EBA0856BA7EAD0067D6A288B7BFD850DFD88AADA970C15E596A91FD625C832AC81C7F8FAFAA9B8FA57C1DD5095E71C0EF71C64D48924C48A809FF8E2873";
+		myblock.ok="83610E76";
+		myautocheck_map.insert(std::pair<string, hash_autocheck>("CRC-32",myblock));
+		myblock.ok="22818CBD";
+		myautocheck_map.insert(std::pair<string, hash_autocheck>("CRC-32C",myblock));
+		myblock.ok="946D57808F7892E5C96B211DD4BB3A6E";
+		myautocheck_map.insert(std::pair<string, hash_autocheck>("MD5",myblock));
+		myblock.ok="493A286068CB14EA6C4DB504428D5DC290B0FD4CBD27D1293A4DA4821B31BE75";
+		myautocheck_map.insert(std::pair<string, hash_autocheck>("SHA-256",myblock));
+		myblock.ok="B76B37AE6285FAC05A3B26464127CCE79CB96CB15115F62DAAE89FDE769CFE68";
+		myautocheck_map.insert(std::pair<string, hash_autocheck>("SHA-3",myblock));
+		myblock.ok="11B85618DF64B30E58AAD62047A043892DF8EFBC";
+		myautocheck_map.insert(std::pair<string, hash_autocheck>("SHA1-PUT",myblock));
+		myblock.ok="11B85618DF64B30E58AAD62047A043892DF8EFBC";
+		myautocheck_map.insert(std::pair<string, hash_autocheck>("SHA1-WRITE",myblock));
+		myblock.ok="DE10FE65E14555B108CBA1828B9204B9490083F46550685B8FF513D04247DE81ACBD4F7C9F6C94CFFB6C61C81A5E8F5BD5123FC8DBE2F6CAE52A9C724816F82D";
 		myautocheck_map.insert(std::pair<string, hash_autocheck>("WHIRLPOOL",myblock));
+		myblock.ok="B7B3E3CEE45A3B2FE46B7A7CC96D9DBC";
+		myautocheck_map.insert(std::pair<string, hash_autocheck>("XXH3",myblock));		
+		myblock.ok="1FE1D98B9AD20D12";
+		myautocheck_map.insert(std::pair<string, hash_autocheck>("XXHASH64",myblock));
+
 		XXH3_state_t state128;
 		XXH3_128bits_reset(&state128);
 		libzpaq::SHA1 sha1;
@@ -32432,15 +32441,32 @@ int Jidac::benchmark()
 		for (int i=0;i<10;i++)
 		{
 			myprintf("Iteration %d/9 chunksize %10s\n",i,migliaia(chunksize));
-			for (int k=0;k<(i+1)*777;k++)
+			populateRandom_xorshift128plus(buffer32bit, chunksize,324+i,4444+i);
+			for (int j=0;j<chunksize;j++)
+				buffer8bit[j]=buffer32bit[j] % 255;
+			if (flagverbose)
+			{
+				printbar('=');
+				myprintf("The Spartans %d\n",i);
+				for (int j=0;j<300;j++)
+				{
+					myprintf("%02X ",buffer8bit[j]);
+					if ((j+1)%20==0)
+						myprintf("\n");
+				}
+				printbar('=');
+			}
+				
+
+		for (int k=0;k<(i+1)*777;k++)
 			{
 				total_hashed+=chunksize;
-				// quick-and-dirty endianness "trap"
-				for (int j=0;j<chunksize;j++)
-					buffer8bit[j]=(xorshf96() >>16) & 0xFF;
+				for (int j=0;j<300;j++)
+					buffer8bit[j]++;
+
 				XXH3_128bits_update(&state128, buffer8bit, chunksize);
-				for (int64_t i=0;i<chunksize;i++)
-					mysha256.put(*(buffer8bit+i));
+				for (int64_t l=0;l<chunksize;l++)
+					mysha256.put(*(buffer8bit+l));
 				md5.add((const char*)buffer8bit,chunksize);
 				sha3.add((const char*)buffer8bit,chunksize);
 				NESSIEadd((const unsigned char*)buffer8bit,chunksize*8,&hasher);
@@ -32449,8 +32475,8 @@ int Jidac::benchmark()
 				crcc=crc32c(crcc, (const unsigned char*)buffer8bit,chunksize);
 				myhash.add((const unsigned char*)buffer8bit,chunksize);
 				sha1.write((const char*)buffer8bit,chunksize);
-				for (int64_t i=0;i<chunksize;i++)
-					sha1put.put(*(buffer8bit+i));
+				for (int64_t l=0;l<chunksize;l++)
+					sha1put.put(*(buffer8bit+l));
 			}
 			chunksize/=3;
 		}
@@ -32516,13 +32542,20 @@ int Jidac::benchmark()
 			myprintf("This seems a BIG ENDIAN CPU    (aka:'strange')\n");
 		else
 			myprintf("This seems a LITTLE ENDIAN CPU (aka:'normal')\n");
+		if (flagverbose)
+		{
+			printbar('-');
+			for (MAPPAAUTOCHECK::iterator p=myautocheck_map.begin(); p!=myautocheck_map.end(); ++p)
+				myprintf("CALC %15s: %s\n",p->first.c_str(),p->second.calculated.c_str());
+			printbar('-');
+		}
 		bool	allok=true;
 		for (MAPPAAUTOCHECK::iterator p=myautocheck_map.begin(); p!=myautocheck_map.end(); ++p)
 			if (p->second.ok==p->second.calculated)
 				myprintf("%15s : OK\n",p->first.c_str());
 			else
 			{
-				myprintf("%15s : ERROR  OK %s CALCULATED\n",p->first.c_str(),p->second.ok.c_str(),p->second.calculated.c_str());
+				myprintf("%15s : ERROR  OK %s CALCULATED %s\n",p->first.c_str(),p->second.ok.c_str(),p->second.calculated.c_str());
 				allok=false;
 			}
 		myprintf("Time %.2f seconds for bytes %s\n",(endtime-startcalc)*0.001,migliaia(total_hashed));
