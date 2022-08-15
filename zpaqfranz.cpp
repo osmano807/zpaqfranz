@@ -13,7 +13,7 @@
  https://sourceforge.net/projects/zpaqfranz/
 */
 
-#define ZPAQ_VERSION "55.10e-experimental"
+#define ZPAQ_VERSION "55.10f-experimental"
 
 #if defined(_WIN64)
 #define ZSFX_VERSION "SFX64 v55.1,"
@@ -17015,303 +17015,304 @@ string forcelatinansi(string i_string)
 		return ("");
 	for (unsigned int j=0;j<i_string.length();j++)
 	{
-		if (i_string[j]<0)
+		printf("K1 %4d %c\n",(int)i_string[j],i_string[j]);
+		if ((int)i_string[j]<0)
 		{
-			if (i_string[j]==-1) 
-			i_string[j]='u';
+			if ((int)i_string[j]==-1)
+				i_string[j]='u';
 				else
-				if (i_string[j]==-2) 
+				if ((int)i_string[j]==-2) 
 					i_string[j]='u';
 				else
-				if (i_string[j]==-3) 
+				if ((int)i_string[j]==-3) 
 					i_string[j]='u';
 				else
-				if (i_string[j]==-4) 
+				if ((int)i_string[j]==-4) 
 					i_string[j]='u';
 				else
-				if (i_string[j]==-5) 
+				if ((int)i_string[j]==-5) 
 					i_string[j]='u';
 				else
-				if (i_string[j]==-6) 
+				if ((int)i_string[j]==-6) 
 					i_string[j]='u';
 				else
-				if (i_string[j]==-7) 
+				if ((int)i_string[j]==-7) 
 					i_string[j]='u';
 				else
-				if (i_string[j]==-8) 
+				if ((int)i_string[j]==-8) 
 					i_string[j]='o';
 				else
-				if (i_string[j]==-9) 
+				if ((int)i_string[j]==-9) 
 					i_string[j]='o';
 				else
-				if (i_string[j]==-10) 
+				if ((int)i_string[j]==-10) 
 					i_string[j]='o';
 				else
-				if (i_string[j]==-11) 
+				if ((int)i_string[j]==-11) 
 					i_string[j]='o';
 				else
-				if (i_string[j]==-12) 
+				if ((int)i_string[j]==-12) 
 					i_string[j]='o';
 				else
-				if (i_string[j]==-13) 
+				if ((int)i_string[j]==-13) 
 					i_string[j]='o';
 				else
-				if (i_string[j]==-14) 
+				if ((int)i_string[j]==-14) 
 					i_string[j]='o';
 				else
-				if (i_string[j]==-15) 
+				if ((int)i_string[j]==-15) 
 					i_string[j]='o';
 				else
-				if (i_string[j]==-17) 
+				if ((int)i_string[j]==-17) 
 					i_string[j]='i';
 				else
-				if (i_string[j]==-18) 
+				if ((int)i_string[j]==-18) 
 					i_string[j]='i';
 				else
-				if (i_string[j]==-19) 
+				if ((int)i_string[j]==-19) 
 					i_string[j]='i';
 				else
-				if (i_string[j]==-20) 
+				if ((int)i_string[j]==-20) 
 					i_string[j]='i';
 				else
-				if (i_string[j]==-21) 
+				if ((int)i_string[j]==-21) 
 					i_string[j]='e';
 				else
-				if (i_string[j]==-22) 
+				if ((int)i_string[j]==-22) 
 					i_string[j]='e';
 				else
-				if (i_string[j]==-23) 
+				if ((int)i_string[j]==-23) 
 					i_string[j]='e';
 				else
-				if (i_string[j]==-24) 
+				if ((int)i_string[j]==-24) 
 					i_string[j]='e';
 				else
-				if (i_string[j]==-25) 
+				if ((int)i_string[j]==-25) 
 					i_string[j]='a';
 				else
-				if (i_string[j]==-26) 
+				if ((int)i_string[j]==-26) 
 					i_string[j]='a';
 				else
-				if (i_string[j]==-27) 
+				if ((int)i_string[j]==-27) 
 					i_string[j]='a';
 				else
-				if (i_string[j]==-28) 
+				if ((int)i_string[j]==-28) 
 					i_string[j]='a';
 				else
-				if (i_string[j]==-29) 
+				if ((int)i_string[j]==-29) 
 					i_string[j]='a';
 				else
-				if (i_string[j]==-30) 
+				if ((int)i_string[j]==-30) 
 					i_string[j]='e';
 				else
-				if (i_string[j]==-31) 
+				if ((int)i_string[j]==-31) 
 					i_string[j]='a';
 				else
-				if (i_string[j]==-32) 
+				if ((int)i_string[j]==-32) 
 					i_string[j]='a';
 				else
-				if (i_string[j]==-33) 
+				if ((int)i_string[j]==-33) 
 					i_string[j]='u';
 				else
-				if (i_string[j]==-34) 
+				if ((int)i_string[j]==-34) 
 					i_string[j]='u';
 				else
-				if (i_string[j]==-35) 
+				if ((int)i_string[j]==-35) 
 					i_string[j]='u';
 				else
-				if (i_string[j]==-36) 
+				if ((int)i_string[j]==-36) 
 					i_string[j]='u';
 				else
-				if (i_string[j]==-37) 
+				if ((int)i_string[j]==-37) 
 					i_string[j]='u';
 				else
-				if (i_string[j]==-38) 
+				if ((int)i_string[j]==-38) 
 					i_string[j]='u';
 				else
-				if (i_string[j]==-39) 
+				if ((int)i_string[j]==-39) 
 					i_string[j]='U';
 				else
-				if (i_string[j]==-40) 
+				if ((int)i_string[j]==-40) 
 					i_string[j]='O';
 				else
-				if (i_string[j]==-41) 
+				if ((int)i_string[j]==-41) 
 					i_string[j]='x';
 				else
-				if (i_string[j]==-42) 
+				if ((int)i_string[j]==-42) 
 					i_string[j]='O';
 				else
-				if (i_string[j]==-45) 
+				if ((int)i_string[j]==-45) 
 					i_string[j]='O';
 				else
-				if (i_string[j]==-46) 
+				if ((int)i_string[j]==-46) 
 					i_string[j]='O';
 				else
-				if (i_string[j]==-47) 
+				if ((int)i_string[j]==-47) 
 					i_string[j]='N';
 				else
-				if (i_string[j]==-49) 
+				if ((int)i_string[j]==-49) 
 					i_string[j]='I';
 				else
-				if (i_string[j]==-50) 
+				if ((int)i_string[j]==-50) 
 					i_string[j]='I';
 				else
-				if (i_string[j]==-51) 
+				if ((int)i_string[j]==-51) 
 					i_string[j]='I';
 				else
-				if (i_string[j]==-52) 
+				if ((int)i_string[j]==-52) 
 					i_string[j]='I';
 				else
-				if (i_string[j]==-53) 
+				if ((int)i_string[j]==-53) 
 					i_string[j]='E';
 				else
-				if (i_string[j]==-54) 
+				if ((int)i_string[j]==-54) 
 					i_string[j]='E';
 				else
-				if (i_string[j]==-55) 
+				if ((int)i_string[j]==-55) 
 					i_string[j]='E';
 				else
-				if (i_string[j]==-56) 
+				if ((int)i_string[j]==-56) 
 					i_string[j]='E';
 				else
-				if (i_string[j]==-57) 
+				if ((int)i_string[j]==-57) 
 					i_string[j]='E';
 				else		
-				if (i_string[j]==-60) 
+				if ((int)i_string[j]==-60) 
 					i_string[j]='A';
 				else
-				if (i_string[j]==-61) 
+				if ((int)i_string[j]==-61) 
 					i_string[j]='A';
 				else
-				if (i_string[j]==-62) 
+				if ((int)i_string[j]==-62) 
 					i_string[j]='A';
 				else
-				if (i_string[j]==-63) 
+				if ((int)i_string[j]==-63) 
 					i_string[j]='A';
 				else
-				if (i_string[j]==-64) 
+				if ((int)i_string[j]==-64) 
 					i_string[j]='A';
 				else
-				if (i_string[j]==-66) 
+				if ((int)i_string[j]==-66) 
 					i_string[j]='3';
 				else
-				if (i_string[j]==-68) 
+				if ((int)i_string[j]==-68) 
 					i_string[j]='3';
 				else
-				if (i_string[j]==-69) 
+				if ((int)i_string[j]==-69) 
 					i_string[j]='>';
 				else
-				if (i_string[j]==-70) 
+				if ((int)i_string[j]==-70) 
 					i_string[j]='o';
 				else
-				if (i_string[j]==-72) 
+				if ((int)i_string[j]==-72) 
 					i_string[j]='.';
 				else
-				if (i_string[j]==-74) 
+				if ((int)i_string[j]==-74) 
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-75) 
+				if ((int)i_string[j]==-75) 
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-76) 
+				if ((int)i_string[j]==-76) 
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-78) 
+				if ((int)i_string[j]==-78) 
 					i_string[j]='2';
 				else
-				if (i_string[j]==-80) 
+				if ((int)i_string[j]==-80) 
 					i_string[j]='o';
 				else
-				if (i_string[j]==-81) 
+				if ((int)i_string[j]==-81) 
 					i_string[j]='-';
 				else
-				if (i_string[j]==-82) 
+				if ((int)i_string[j]==-82) 
 					i_string[j]='-';
 				else
-				if (i_string[j]==-83) 
+				if ((int)i_string[j]==-83) 
 					i_string[j]='-';
 				else
-				if (i_string[j]==-84) 
+				if ((int)i_string[j]==-84) 
 					i_string[j]='-';
 				else
-				if (i_string[j]==-85) 
+				if ((int)i_string[j]==-85) 
 					i_string[j]='<';
 				else
-				if (i_string[j]==-89) 
+				if ((int)i_string[j]==-89) 
 					i_string[j]='S';
 				else
-				if (i_string[j]==-90) 
+				if ((int)i_string[j]==-90) 
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-93) 
+				if ((int)i_string[j]==-93) 
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-94) 
+				if ((int)i_string[j]==-94) 
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-95) 
+				if ((int)i_string[j]==-95) 
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-96) 
+				if ((int)i_string[j]==-96) 
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-98) 
+				if ((int)i_string[j]==-98) 
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-102)
+				if ((int)i_string[j]==-102)
 					i_string[j]='s';
 				else
-				if (i_string[j]==-103)
+				if ((int)i_string[j]==-103)
 					i_string[j]='a';
 				else
-				if (i_string[j]==-106)
+				if ((int)i_string[j]==-106)
 					i_string[j]='-';
 				else
-				if (i_string[j]==-107)
+				if ((int)i_string[j]==-107)
 					i_string[j]='.';
 				else
-				if (i_string[j]==-108)
+				if ((int)i_string[j]==-108)
 					i_string[j]='"';
 				else
-				if (i_string[j]==-109)
+				if ((int)i_string[j]==-109)
 					i_string[j]='"';
 				else
-				if (i_string[j]==-110)
+				if ((int)i_string[j]==-110)
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-111)
+				if ((int)i_string[j]==-111)
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-112)
+				if ((int)i_string[j]==-112)
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-112)
+				if ((int)i_string[j]==-112)
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-113) 
+				if ((int)i_string[j]==-113) 
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-114) 
+				if ((int)i_string[j]==-114) 
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-115)
+				if ((int)i_string[j]==-115)
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-116) 
+				if ((int)i_string[j]==-116) 
 					i_string[j]=' ';
 				else
-				if (i_string[j]==-118) 
+				if ((int)i_string[j]==-118) 
 					i_string[j]='S';
 				else
-				if (i_string[j]==-123) 
+				if ((int)i_string[j]==-123) 
 					i_string[j]='d';
 				else
-				if (i_string[j]==-128) 
+				if ((int)i_string[j]==-128) 
 					i_string[j]='E';
 				else
 					i_string[j]=' ';
 		}
 	}
-	return i_string;
+	return mytrim(i_string);
 }
 string purgedouble(const string& i_string,const string& i_from,const string& i_to)
 {
@@ -19108,7 +19109,7 @@ uint32_t crc32_16bytes (const void* data, size_t length, uint32_t previousCrc32 
     #define PREFETCH(location) ;
   #endif
 #endif
-#define __BYTE_ORDER __LITTLE_ENDIAN
+///fika#define __BYTE_ORDER __LITTLE_ENDIAN
 namespace
 {
   const uint32_t Polynomial = 0xEDB88320;
@@ -32383,6 +32384,16 @@ unsigned char xorshf96(void)
 }
 int Jidac::benchmark()
 {
+	string pippo="fatturà";
+	string kk=forcelatinansi(pippo);
+	printf("|%s|\n",kk.c_str());
+	
+	pippo="àèìòù";
+	kk=forcelatinansi(pippo);
+	printf("|%s|\n",kk.c_str());
+	exit(0);
+
+
 	if (flagdebug)
 	{
 		myprintf("Autotest for main hash functions\n");
